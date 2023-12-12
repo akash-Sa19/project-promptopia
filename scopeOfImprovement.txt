@@ -1,0 +1,13 @@
+-> remove leading hastag from the #hastags if added
+-> seprate all hastages from each other 
+-> intregrate prompt summarizer with this app
+-> intergate ChatGPT to answere the prompts
+
+must do 
+-> Implement Search
+    - Search by prompt
+    - Search by tag
+    - search by username
+-> Implement click on tag
+    (so we can see prompts with similar hastag)
+-> Implement view other profiles
