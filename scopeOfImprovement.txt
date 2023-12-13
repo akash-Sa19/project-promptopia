@@ -1,5 +1,5 @@
--> remove leading hastag from the #hastags if added
--> seprate all hastages from each other 
+[=] remove leading hastag from the #hastags if added
+[=] seprate all hastages from each other 
 -> intregrate prompt summarizer with this app
 -> intergate ChatGPT to answere the prompts
 

@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
@@ -21,7 +22,12 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           </span>
           <textarea
             value={post.prompt}
-            onChange={(e) => setPost({ ...post, prompt: e.target.value })}
+            onChange={(e) =>
+              setPost({
+                ...post,
+                prompt: e.target.value,
+              })
+            }
             placeholder="Write your prompts here..."
             required
             className="form_textarea"
@@ -30,14 +36,19 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
         <label>
           <span className="text-base font-semibold text-gray-700 font-satoshi">
-            Tag
-            <span className="font-normal">
+            Tag{`  `}
+            <span className="font-normal text-sm text-gray-500">
               (#product, #webdevelopment, #idea)
             </span>
           </span>
           <input
             value={post.tag}
-            onChange={(e) => setPost({ ...post, tag: e.target.value })}
+            onChange={(e) =>
+              setPost({
+                ...post,
+                tag: e.target.value,
+              })
+            }
             placeholder="#tag"
             required
             className="form_input"
