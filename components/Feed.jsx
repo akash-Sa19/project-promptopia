@@ -38,13 +38,20 @@ const Feed = () => {
   }, []);
 
   const findSearchedPrompt = (searchTerm) => {
-    const regEx = new RegExp(searchTerm, "i"); // "i" flag for case-insensitive search
-    return allPosts.filter(
-      (item) =>
-        regEx.test(item.creator.username) ||
-        regEx.test(item.tag) ||
-        regEx.test(item.prompt)
-    );
+    const filteredPrompt = allPosts.filter((item) => {
+      if (/\#/g.test(searchTerm)) {
+        const regEx0 = new RegExp(searchTerm.replace(/\#/g, ""));
+        return regEx0.test(item.tag);
+      } else {
+        const regEx = new RegExp(searchTerm, "i"); // "i" flag for case-insensitive search
+        return (
+          regEx.test(item.creator.username) ||
+          regEx.test(item.tag) ||
+          regEx.test(item.prompt)
+        );
+      }
+    });
+    return filteredPrompt;
   };
 
   const handleSearchChange = (e) => {
@@ -58,6 +65,11 @@ const Feed = () => {
         setSerchResults(serchResult);
       }, 500)
     );
+  };
+
+  const handleTagClick = (tagName) => {
+    setSearchText("#" + tagName);
+    setSerchResults(() => findSearchedPrompt(searchText));
   };
 
   return (
@@ -76,12 +88,12 @@ const Feed = () => {
       {searchText ? (
         <PromptCardList
           data={searchResults}
-          handleTagClick={() => {}}
+          handleTagClick={handleTagClick}
         />
       ) : (
         <PromptCardList
           data={allPosts}
-          handleTagClick={() => {}}
+          handleTagClick={handleTagClick}
         />
       )}
     </section>

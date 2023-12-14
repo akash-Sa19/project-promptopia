@@ -19,20 +19,20 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
   return (
     <div className="prompt_card">
-      <div className="flex justify-center items-start gap-5">
-        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
+      <div className="flex items-start justify-center gap-5">
+        <div className="flex items-center justify-start flex-1 gap-3 cursor-pointer">
           <Image
             src={post.creator.image}
             alt={"user image"}
             width={40}
             height={40}
-            className="rounded-full object-contain"
+            className="object-contain rounded-full"
           ></Image>
           <div className="flex flex-col">
-            <h3 className="font-satoshi font-semibold text-gray-900 ">
+            <h3 className="font-semibold text-gray-900 font-satoshi ">
               {post.creator.username}
             </h3>
-            <p className="font-inter text-sm text-gray-900">
+            <p className="text-sm text-gray-900 font-inter">
               {post.creator.email}
             </p>
           </div>
@@ -51,12 +51,13 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             width={12}
             height={12}
             onClick={handleCopy}
+            alt="Profile photo"
           ></Image>
         </div>
       </div>
 
-      <p className="my-4 font-satoshi text-base text-gray-700">{post.prompt}</p>
-      <div className="flex gap-2 flex-wrap">
+      <p className="my-4 text-base text-gray-700 font-satoshi">{post.prompt}</p>
+      <div className="flex flex-wrap gap-2">
         {post.tag
           .replace(/\#/g, "")
           .replace(/\,/g, "")
@@ -65,9 +66,9 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           .split(" ")
           .map((item, index) => (
             <p
-              className="font-inter text-sm blue_gradient cursor-pointer"
+              className="text-sm cursor-pointer font-inter blue_gradient"
               key={index}
-              onClick={() => handleTagClick && handleTagClick(post.tag)}
+              onClick={() => handleTagClick && handleTagClick(item)}
             >
               #{item}
             </p>
@@ -75,15 +76,15 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       </div>
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
-        <div className="mt-5 flex-center border-t border-gray-100 pt-3 gap-4">
+        <div className="gap-4 pt-3 mt-5 border-t border-gray-100 flex-center">
           <p
-            className="font-inter text-sm green_gradient cursor-pointer"
+            className="text-sm cursor-pointer font-inter green_gradient"
             onClick={handleEdit}
           >
             Edit
           </p>
           <p
-            className="font-inter text-sm orange_gradient cursor-pointer"
+            className="text-sm cursor-pointer font-inter orange_gradient"
             onClick={handleDelete}
           >
             Delete

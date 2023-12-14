@@ -2,6 +2,7 @@
 [=] seprate all hastages from each other 
 -> intregrate prompt summarizer with this app
 -> intergate ChatGPT to answere the prompts
+-> highlight search term
 
 must do 
 [=] Implement Search
