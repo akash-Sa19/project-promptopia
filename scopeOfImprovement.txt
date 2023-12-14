@@ -4,7 +4,7 @@
 -> intergate ChatGPT to answere the prompts
 
 must do 
--> Implement Search
+[=] Implement Search
     - Search by prompt
     - Search by tag
     - search by username
