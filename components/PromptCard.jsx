@@ -16,11 +16,24 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     navigator.clipboard.writeText(post.prompt);
     setTimeout(() => setCopied(""), 3000);
   };
+  // console.log(post);
+  // console.log(session);
+
+  const handleProfileClick = () => {
+    // console.log(post);
+
+    if (post.creator._id === session?.user.id) return router.push("/profile");
+
+    router.push(`/profile/${post.creator._id}?name=${post.creator.username}`);
+  };
 
   return (
     <div className="prompt_card">
       <div className="flex items-start justify-center gap-5">
-        <div className="flex items-center justify-start flex-1 gap-3 cursor-pointer">
+        <div
+          className="flex items-center justify-start flex-1 gap-3 cursor-pointer"
+          onClick={handleProfileClick}
+        >
           <Image
             src={post.creator.image}
             alt={"user image"}
@@ -28,6 +41,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             height={40}
             className="object-contain rounded-full"
           ></Image>
+
           <div className="flex flex-col">
             <h3 className="font-semibold text-gray-900 font-satoshi ">
               {post.creator.username}
@@ -45,9 +59,10 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           <Image
             src={
               copied === post.prompt
-                ? "./assets/icons/tick.svg"
-                : "./assets/icons/copy.svg"
+                ? "../assets/icons/tick.svg"
+                : "../assets/icons/copy.svg"
             }
+            // src={"../assets/icons/copy.svg"}
             width={12}
             height={12}
             onClick={handleCopy}
